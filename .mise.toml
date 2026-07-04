@@ -1,0 +1,72 @@
+# 개발 환경 도구 버전 고정 + 통합 태스크 러너.
+# 도구/버전/태스크의 단일 출처. 명령 설명은 docs/development-commands.md 를 본다.
+# 버전은 현재 최신 안정 버전으로 핀한다(조회일 2026-07-04). 업그레이드는 PR로.
+
+[tools]
+bun = "1.3.14"
+rust = { version = "1.96.0", components = "rustfmt,clippy" }
+# node = "<현재 LTS>"   # 특정 도구(일부 e2e)가 node를 요구하면 실제 버전으로 핀해 활성화
+
+# ── 태스크 (mise run <name>) ──────────────────────────────
+# JS/TS 는 bun 스크립트를, Rust 는 cargo 를 호출한다.
+# ':' 대신 '-' 를 써서 TOML/mise 태스크 이름을 단순하게 유지한다.
+
+[tasks.dev]
+description = "Tauri dev (웹 dev 서버 + Rust 백엔드 핫리로드)"
+run = "bun run dev"
+
+[tasks.dev-web]
+description = "프론트만 Vite dev (웹뷰 없이 UI 확인)"
+run = "bun run dev:web"
+
+[tasks.build]
+description = "프로덕션 번들 + Tauri 앱 빌드 (현재 OS 타깃)"
+run = "bun run build"
+
+[tasks.build-web]
+description = "프론트만 빌드 (정적 산출물 확인)"
+run = "bun run build:web"
+
+[tasks.lint]
+description = "oxlint (JS/TS)"
+run = "bun run lint"
+
+[tasks.fmt]
+description = "oxfmt 적용 (JS/TS) + cargo fmt (Rust)"
+run = ["bun run fmt", "cargo fmt"]
+
+[tasks.fmt-check]
+description = "포맷 검사(변경 없이): oxfmt + cargo fmt --check"
+run = ["bun run fmt:check", "cargo fmt --check"]
+
+[tasks.fsd-check]
+description = "steiger — FSD 레이어 import 경계 검사"
+run = "bun run fsd:check"
+
+[tasks.clippy]
+description = "cargo clippy (경고=에러)"
+run = "cargo clippy --all-targets --all-features -- -D warnings"
+
+[tasks.test]
+description = "Vitest 유닛(= vitest run) + cargo test"
+run = ["bun run test", "cargo test"]
+
+[tasks.test-watch]
+description = "Vitest 워치 모드 (개발 중)"
+run = "bun run test:watch"
+
+[tasks.test-cov]
+description = "커버리지: Vitest v8 (+ cargo llvm-cov 옵션)"
+run = "bun run test:cov"
+
+[tasks.e2e]
+description = "WebdriverIO + tauri-driver (Linux/Windows)"
+run = "bun run e2e"
+
+[tasks.bench]
+description = "입력 레이턴시/시작/메모리 벤치 (p50/p95/p99)"
+run = "bun run bench"
+
+[tasks.check]
+description = "전체 확인 게이트: fmt-check + lint + fsd-check + test + clippy"
+depends = ["fmt-check", "lint", "fsd-check", "test", "clippy"]

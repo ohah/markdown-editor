@@ -1,32 +1,16 @@
 #!/bin/sh
-# pre-push: PR 전 필수 게이트 — 린트 + 유닛 테스트(JS + Rust).
+# pre-push: PR 전 필수 게이트 — 전체 확인(mise run check: fmt-check + lint + fsd-check + test + clippy).
 # "PR 올리기 전 반드시 실행"(프로젝트 규칙). 통과하지 못하면 push가 막힌다.
 # 툴체인이 아직 스캐폴딩되지 않았으면 조용히 건너뛴다.
 set -e
 
-echo "[pre-push] PR 전 필수 게이트: 린트 + 유닛 테스트"
-RAN=0
+echo "[pre-push] PR 전 필수 게이트: mise run check"
 
-if [ -f package.json ] && command -v bun >/dev/null 2>&1; then
-  echo "[pre-push] oxlint"
-  bun run lint
-  echo "[pre-push] vitest 유닛 테스트"
-  bun run test
-  RAN=1
-fi
-
-if [ -f Cargo.toml ] && command -v cargo >/dev/null 2>&1; then
-  echo "[pre-push] cargo clippy"
-  cargo clippy --all-targets --all-features -- -D warnings
-  echo "[pre-push] cargo test"
-  cargo test
-  RAN=1
-fi
-
-if [ "$RAN" = 0 ]; then
-  echo "[pre-push] 툴체인 미설정 — 건너뜀(스캐폴딩 후 자동 활성화)"
-else
+if [ -f .mise.toml ] && [ -f package.json ] && command -v mise >/dev/null 2>&1; then
+  mise run check
   echo "[pre-push] 통과"
+else
+  echo "[pre-push] 툴체인 미설정 — 건너뜀(스캐폴딩 후 자동 활성화)"
 fi
 
 exit 0
