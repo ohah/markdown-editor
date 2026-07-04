@@ -8,19 +8,11 @@
 
 **결정**: Tauri 2.x를 채택한다.
 
-**맥락**: 경쟁 대상인 Obsidian·Typora·Logseq·Mark Text는 전부 Electron + DOM 기반이다. 이들이 느리게 느껴지는 주 요인은 편집기 자체가 아니라 **Chromium을 통째로 부팅하는 콜드 스타트·메모리**다. 마크다운 에디터의 체감 성능은 축별로 다음처럼 갈린다.
+**맥락**: 경쟁 대상인 Obsidian·Typora·Logseq·Mark Text는 전부 Electron + DOM 기반이다. 이들이 느리게 느껴지는 주 요인은 편집기 자체가 아니라 **Chromium을 통째로 부팅하는 콜드 스타트·메모리**다. 마크다운 에디터의 체감 성능은 축별로 갈리는데, **셸 교체로 이기는 축(콜드 스타트·메모리·바이너리 크기)과 셸과 무관한 축(타이핑 레이턴시·대용량 편집)** 이 분명히 나뉜다. 축별 표는 [performance-budget.md](performance-budget.md)를 단일 출처로 둔다.
 
-| 성능 축 | 지배 요인 | 셸 교체로 개선? |
-| --- | --- | --- |
-| 콜드 스타트 | 렌더 엔진 부팅 | ✅ Tauri 유리 |
-| 메모리 | Chromium 유무 | ✅ Tauri 유리 |
-| 바이너리 크기 | 런타임 번들 | ✅ Tauri 압도적 |
-| 타이핑 레이턴시 | 에디터 엔진 | ❌ 셸 무관 |
-| 대용량 편집/스크롤 | 텍스트 버퍼·증분 파싱 | ❌ 셸 무관 |
+Electron을 쓰면 경쟁작과 같은 baseline이라 "가벼움"으로 차별화가 안 된다. Tauri는 셸이 이기는 축(시작·메모리·용량)에서 즉시 체감 우위를 준다.
 
-Electron을 쓰면 경쟁작과 같은 baseline이라 "가벼움"으로 차별화가 안 된다. Tauri는 시작·메모리·용량에서 즉시 체감 우위를 준다.
-
-**트레이드오프 / 리스크**: Tauri는 OS 웹뷰를 쓰므로 플랫폼마다 렌더 엔진이 다르다(macOS=WKWebView, Windows=WebView2, **Linux=WebKitGTK**). WebKitGTK가 가장 약한 고리다 — 렌더 버그·스크롤 끊김·WebGPU/WebGL 미성숙. 그래서 3-OS 중 **리눅스를 가장 먼저 검증**한다([tauri-shell.md](tauri-shell.md)의 Linux 정책 참조).
+**트레이드오프 / 리스크**: Tauri는 OS 웹뷰를 쓰므로 플랫폼마다 렌더 엔진이 다르고 **Linux WebKitGTK가 약한 고리**다. 그래서 3-OS 중 리눅스를 가장 먼저 검증한다. 플랫폼별 웹뷰 차이와 Linux 정책의 상세는 [tauri-shell.md](tauri-shell.md)를 단일 출처로 둔다.
 
 ---
 

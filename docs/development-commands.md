@@ -49,7 +49,7 @@ cargo llvm-cov         # Rust 커버리지(옵션)
 bun run e2e            # WebdriverIO + tauri-driver (Linux/Windows)
 ```
 
-**macOS E2E 주의**: `tauri-driver`는 WKWebView WebDriver 미지원이라 macOS에서 자동 E2E가 안 된다. macOS는 컴포넌트/통합 테스트 + 수동 검증으로 대체한다([testing-strategy.md](testing-strategy.md)).
+**macOS E2E 주의**: macOS는 자동 E2E가 안 되어 로컬 수동 검증으로 대체한다. 이유(WKWebView WebDriver 미지원)와 대체 경로의 단일 출처는 [testing-strategy.md E2E의 플랫폼 한계](testing-strategy.md)다.
 
 ## 성능
 
@@ -86,14 +86,7 @@ git config core.hooksPath .githooks
 
 ## 완료 전 확인
 
-코드/빌드 설정을 바꾼 PR은 기본적으로 다음을 통과해야 한다.
-
-```sh
-bun run check
-cargo clippy --all-targets -- -D warnings
-cargo test
-git diff --check
-```
+코드/빌드 설정을 바꾼 PR은 위 **전체 확인 게이트**(`bun run check` + `cargo clippy/fmt/test` + `git diff --check`)를 통과해야 한다. 이 중 린트·유닛 테스트는 pre-push 훅이 자동으로 강제한다(위 Git 훅).
 
 문서만 바꾼 PR은 `git diff --check`를 최소 검증으로 쓴다. 다만 문서가 명령·구조·테스트 경로를 바꾸면 관련 명령도 함께 실행한다.
 
