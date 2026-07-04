@@ -22,8 +22,8 @@
 - Tauri 2 + Vite + React 19 앱(`apps/desktop`) 최소 창.
 - oxlint / oxfmt / clippy / rustfmt / Vitest / cargo test 배선 + 루트 스크립트([development-commands.md](development-commands.md)).
 - CI 스켈레톤(lint·fmt·test·build).
-- `docs/tech-stack.md`의 "설치된 버전" 표를 실제 버전으로 채운다.
-- **완료 기준**: `bun run check`와 `cargo clippy/test`가 빈 프로젝트에서 통과.
+- `docs/tech-stack.md`의 "현재 최신 버전" 표(PR #3에서 핀 완료)와 `mise install`/`bun install` 실제 설치 버전이 일치하는지 확인하고, 다르면 표를 갱신한다.
+- **완료 기준**: `mise run check`가 빈 프로젝트에서 통과.
 
 ## 1. macOS 앱 실행 프로토타입
 

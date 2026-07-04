@@ -4,7 +4,7 @@
 
 ## 제출 전 확인
 
-제출 전 검증 명령(`bun run check`, `cargo clippy/fmt/test`, `git diff --check`)의 단일 출처는 [development-commands.md 완료 전 확인](development-commands.md)이다. 여기서 명령을 중복 나열하지 않는다.
+제출 전 검증 명령(`mise run check`, `git diff --check`)의 단일 출처는 [development-commands.md 완료 전 확인](development-commands.md)이다. 여기서 명령을 중복 나열하지 않는다.
 
 > 위 검사 중 **린트·유닛 테스트는 push 시 pre-push 훅이 자동으로 강제**한다([development-commands.md Git 훅](development-commands.md)). 훅이 최소 강제 게이트이고, CI는 유닛 테스트만 돌린다(나머지 백로그, [testing-strategy.md](testing-strategy.md)).
 

@@ -69,7 +69,7 @@ shared/
 
 ## 경계 강제
 
-- `steiger`로 FSD 레이어/슬라이스 import 방향을 자동 검사한다(`bun run fsd:check`). 이는 maru의 facade 경계 검사와 같은 역할이다([verification-matrix.md](verification-matrix.md)).
+- `steiger`로 FSD 레이어/슬라이스 import 방향을 자동 검사한다(`mise run fsd-check`). 이는 maru의 facade 경계 검사와 같은 역할이다([verification-matrix.md](verification-matrix.md)).
 - 위반이 나오면 플래그로 우회하지 말고 슬라이스를 올바른 레이어로 옮기거나 공개 API를 정리한다.
 
 ## 규칙 요약
