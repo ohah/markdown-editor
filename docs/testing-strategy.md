@@ -32,7 +32,7 @@ E2E(가장 적게, 가장 비쌈):
 
 | 대상 | 러너 | 커버리지 |
 | --- | --- | --- |
-| TS(프론트 + packages) | **Vitest** | v8 (`bun run test:cov`) |
+| TS(프론트 + packages) | **Vitest** | v8 (`mise run test-cov`) |
 | Rust(crates + src-tauri 로직) | **cargo test** | `cargo-llvm-cov`(옵션) |
 | E2E | **WebdriverIO + tauri-driver** | — |
 
