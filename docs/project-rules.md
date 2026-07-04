@@ -56,6 +56,8 @@
 - 모든 기능 영역에는 E2E 또는 명시적 수동 검증 경로가 있어야 한다.
 - 자동 E2E가 불가능한 영역(예: **macOS는 tauri-driver 미지원**)은 완료 처리 전에 이유와 수동 검증 방법을 사용자에게 보고한다([testing-strategy.md](testing-strategy.md)).
 - 편집 hot path(타이핑·라이브 프리뷰·대용량 문서)는 성능 회귀를 [성능 예산](performance-budget.md)의 벤치로 함께 확인한다.
+- **PR 올리기 전 pre-push 훅(린트 + 유닛 테스트)이 반드시 통과해야 한다**([development-commands.md Git 훅](development-commands.md)). 강제는 로컬 훅이 하고, CI는 최소 유닛 테스트만 둔다(나머지 백로그).
+- 개발·검증 1차 타깃은 **macOS 로컬(수동 실행)** 이다. Windows/Linux 자동화는 백로그.
 
 ## 성능
 

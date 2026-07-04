@@ -18,7 +18,7 @@
 | FSD 경계 | `bun run fsd:check` (steiger) | — | 레이어/슬라이스 import 방향 위반이 없다. |
 | 린트/포맷 | `bun run lint`, `bun run fmt:check`, `cargo clippy -D warnings`, `cargo fmt --check` | — | 코드 스타일 게이트. |
 | 컴포넌트/통합 | `bun run test` (RTL + Vitest) | — | 위젯·기능이 렌더/상호작용한다. |
-| E2E(열기·편집·저장·전환·검색) | `bun run e2e` (tauri-driver, **Linux/Windows**) | 스크린샷/로그 | 실제 앱에서 핵심 흐름이 왕복한다. |
+| E2E(열기·편집·저장·전환·검색) | `bun run e2e` (tauri-driver, **Linux/Windows**) | 스크린샷/로그 | 실제 앱에서 핵심 흐름이 왕복한다(백로그, CI 강제 아님). macOS는 로컬 수동. |
 | 프론트 빌드 | `bun run build:web` | 번들 | 프로덕션 번들이 성공한다. |
 | Tauri 빌드 | `bun run build` | 앱 산출물 | 현재 OS 타깃으로 앱이 빌드된다. |
 
@@ -48,6 +48,15 @@
 - IPC 이벤트 로그: 요청/이벤트 순서(민감정보 제거)
 
 이 포맷은 테스트 산출물이면서, 나중에 디버그 inspector가 같은 데이터를 보게 하는 첫 관측 가능성 경계다([architecture.md 관측 가능성](architecture.md)).
+
+## 강제 지점 (로컬 훅 · CI 최소)
+
+검증의 **강제 지점은 로컬 git 훅**이다(CI 아님). PR 전 pre-push가 린트·유닛 테스트를 반드시 돌린다([testing-strategy.md 로컬 강제 게이트](testing-strategy.md)).
+
+- pre-commit: oxlint + oxfmt 검사 + cargo fmt 검사 (빠른 피드백)
+- **pre-push(필수): oxlint + vitest(유닛) + clippy + cargo test** — 통과 못 하면 push 차단
+- CI: 지금은 유닛 테스트만(나머지 백로그 — 크로스 플랫폼 E2E·성능·커버리지)
+- 개발·검증 1차 타깃은 **macOS 로컬**(수동 실행). Windows/Linux 자동화는 백로그.
 
 ## 연결 규칙
 
