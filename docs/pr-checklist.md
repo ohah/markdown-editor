@@ -14,6 +14,8 @@ git diff --check
 
 문서만 바꾼 PR은 `git diff --check`를 최소 검증으로 쓴다. 다만 문서가 명령·구조·테스트 경로를 바꾸면 관련 명령도 함께 실행한다.
 
+> 위 검사 중 **린트·유닛 테스트는 push 시 pre-push 훅이 자동으로 강제**한다([development-commands.md Git 훅](development-commands.md)). 훅이 최소 강제 게이트이고, CI는 유닛 테스트만 돌린다(나머지 백로그, [testing-strategy.md](testing-strategy.md)).
+
 ## PR 본문에 포함할 것
 
 ```text
