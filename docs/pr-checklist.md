@@ -4,15 +4,7 @@
 
 ## 제출 전 확인
 
-```sh
-bun run check                                   # fmt:check + lint + fsd:check + test + build:web
-cargo clippy --all-targets -- -D warnings
-cargo fmt --check
-cargo test
-git diff --check
-```
-
-문서만 바꾼 PR은 `git diff --check`를 최소 검증으로 쓴다. 다만 문서가 명령·구조·테스트 경로를 바꾸면 관련 명령도 함께 실행한다.
+제출 전 검증 명령(`bun run check`, `cargo clippy/fmt/test`, `git diff --check`)의 단일 출처는 [development-commands.md 완료 전 확인](development-commands.md)이다. 여기서 명령을 중복 나열하지 않는다.
 
 > 위 검사 중 **린트·유닛 테스트는 push 시 pre-push 훅이 자동으로 강제**한다([development-commands.md Git 훅](development-commands.md)). 훅이 최소 강제 게이트이고, CI는 유닛 테스트만 돌린다(나머지 백로그, [testing-strategy.md](testing-strategy.md)).
 
@@ -49,6 +41,4 @@ git diff --check
 
 ## 커밋 / 브랜치
 
-- 커밋: conventional-commit prefix, 소문자 시작(`feat: ...`, `fix: ...`).
-- 브랜치: `type/kebab-설명`.
-- `main` 직접 푸시 금지. 변경 범위를 이 프로젝트 폴더로 한정(상위 워크스페이스 무관 변경 금지).
+커밋 컨벤션(conventional-commit·소문자), 브랜치 형식(`type/kebab-설명`), `main` 직접 푸시 금지와 변경 범위 한정 규칙은 [필수 프로젝트 규칙 기본 규칙](project-rules.md)을 단일 출처로 둔다.
