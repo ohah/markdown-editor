@@ -53,7 +53,7 @@ Tauri는 OS 웹뷰를 쓰므로 플랫폼마다 렌더 엔진이 다르다.
 | Windows | WebView2(Chromium) | 안정. Chromium 기반이라 렌더 예측 가능. |
 | Linux | **WebKitGTK** | **약한 고리.** 렌더 버그·스크롤·WebGPU/WebGL 미성숙 가능. |
 
-**정책**: Linux WebKitGTK를 **가장 먼저** 검증한다. 특히 CM6 라이브 프리뷰 decoration, 스크롤, 폰트 렌더가 리눅스에서 깨지거나 느리지 않은지 초기 세로 슬라이스 단계에서 확인한다([initial-vertical-slice.md](initial-vertical-slice.md)). 문제가 나오면 즉시 한계로 보고한다([project-rules.md 전략 유지](project-rules.md)).
+**정책**: 앱 실행 프로토타입까지는 macOS 로컬 실행만 완료 기준으로 둔다([product-scope.md](product-scope.md)). 프로토타입 이후 Windows/Linux 검증 단계에서 Linux WebKitGTK를 우선 확인한다. 특히 CM6 라이브 프리뷰 decoration, 스크롤, 폰트 렌더가 리눅스에서 깨지거나 느리지 않은지 확인하고, 문제가 나오면 즉시 한계로 보고한다([project-rules.md 전략 유지](project-rules.md)).
 
 Linux 빌드에는 시스템 의존성(webkit2gtk, gtk, librsvg, patchelf 등)이 필요하다. 정확한 목록은 스캐폴딩 시 이 문서에 배포판별로 기록한다.
 

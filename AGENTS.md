@@ -8,11 +8,14 @@
 
 웹 생태계(Tauri + React) 위에서 만드는 크로스 플랫폼(Windows/Linux/macOS) 마크다운 데스크탑 에디터. **원본 마크다운 서식을 보존하는 "마크다운을 다루는 도구"** 를 지향하며, Obsidian/Typora 대비 **시작 속도·메모리·바이너리 크기에서 체감 우위**를 목표로 한다.
 
+앱 실행 프로토타입 단계까지는 **macOS 로컬 실행만 완료 기준**으로 둔다. Windows/Linux는 제품 목표에는 남기되, 프로토타입 이후 검증 단계에서 다룬다.
+
 ## 먼저 읽을 문서
 
 - [기술 스택](docs/tech-stack.md)
 - [설계 의사결정 기록(ADR)](docs/decisions.md)
 - [초기 아키텍처](docs/architecture.md)
+- [제품 범위](docs/product-scope.md)
 - [필수 프로젝트 규칙](docs/project-rules.md)
 - [개발 명령](docs/development-commands.md)
 - [파일/폴더 구조](docs/project-structure.md)
@@ -22,6 +25,8 @@
 
 - [에디터 전략(CodeMirror 6, 텍스트 원천, 라이브 프리뷰)](docs/editor-strategy.md)
 - [마크다운 파이프라인(unified: remark/rehype, Web Worker)](docs/parser-pipeline.md)
+- [마크다운 호환성(GitHub Flavored Markdown 기준)](docs/markdown-compatibility.md)
+- [보안 모델](docs/security-model.md)
 - [프론트엔드 구조(Feature-Sliced Design)](docs/frontend-fsd.md)
 - [Tauri 셸 경계(Rust 백엔드, IPC, 파일 I/O)](docs/tauri-shell.md)
 - [성능 예산과 벤치 방법론](docs/performance-budget.md)

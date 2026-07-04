@@ -18,11 +18,11 @@
 | JS/TS 린트 | **oxlint** | 빠른 린터. FSD 경계는 `steiger`(옵션)로 별도 강제. |
 | JS/TS 포맷 | **oxfmt** | Oxc 포매터(Prettier 호환). 미성숙 이슈 발견 시 한계로 보고. |
 | Rust 빌드/테스트 | **cargo** | `src-tauri`와 공용 crate. |
-| Rust 린트 | **clippy** | `cargo clippy`. CI 게이트에 포함. |
+| Rust 린트 | **clippy** | `cargo clippy`. 로컬 게이트에 포함, CI 확장은 백로그. |
 | Rust 포맷 | **rustfmt** | `cargo fmt`. clippy는 린터라 포맷과 별도. |
 | 단위 테스트(FE) | **Vitest** | Vite 네이티브. 커버리지(v8) 지원. |
 | 단위 테스트(Rust) | **cargo test** | 커버리지는 `cargo-llvm-cov`. |
-| E2E | **WebdriverIO + tauri-driver** | Linux/Windows CI. **macOS는 tauri-driver 미지원**(한계, [testing-strategy.md](testing-strategy.md)). |
+| E2E | **WebdriverIO + tauri-driver** | 프로토타입 이후 Linux/Windows 자동화 후보. **macOS는 tauri-driver 미지원**이라 수동 검증으로 대체([testing-strategy.md](testing-strategy.md)). |
 
 ## 파서 선택에 대한 주의
 
@@ -32,7 +32,8 @@
 마크다운 텍스트
   --(remark-parse)-->  mdast(마크다운 AST)
   --(remark-rehype)--> hast(HTML AST)
-  --(rehype-* 플러그인)--> 변환/보안(sanitize)
+  --(rehype-* 플러그인)--> 변환
+  --(rehype-sanitize)--> 보안
   --(rehype-stringify)--> HTML  (리딩 뷰 / 익스포트)
 ```
 
@@ -52,7 +53,7 @@
 | 패키지 | 버전 | 비고 |
 | --- | --- | --- |
 | bun | 1.3.14 | mise 핀(도구) |
-| rust | 1.96.0 | mise 핀(도구, + rustfmt/clippy) |
+| rust | 1.96.1 | mise 핀(도구, + rustfmt/clippy) |
 | @tauri-apps/cli | 2.11.4 | |
 | @tauri-apps/api | 2.11.1 | |
 | tauri (crate) | 2.11.5 | Rust |
@@ -80,6 +81,6 @@
 
 - `[tools]`: `bun`, `rust`(+ `rustfmt`/`clippy` 컴포넌트)를 핀. 필요 시 `node` 추가.
 - `[tasks]`: `mise run dev/build/lint/fmt/test/clippy/check/…` — 내부적으로 bun 스크립트·cargo를 호출한다.
-- 도구 버전은 현재 최신 안정 버전으로 `.mise.toml`에 핀했다: **bun 1.3.14, rust 1.96.0**(조회일 2026-07-04). 업그레이드는 PR로 한다.
+- 도구 버전은 현재 최신 안정 버전으로 `.mise.toml`에 핀했다: **bun 1.3.14, rust 1.96.1**(조회일 2026-07-04). 업그레이드는 PR로 한다.
 
 명령 목록은 [development-commands.md](development-commands.md)를 단일 출처로 둔다.

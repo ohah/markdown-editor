@@ -73,6 +73,8 @@ tools/bench/            (또는 apps/desktop/bench)
 ```
 
 - `bun run bench`로 실행([development-commands.md](development-commands.md)).
+- 최소 하니스는 Phase 1(macOS 앱 실행 프로토타입)에 붙인다. 초기에는 콜드 스타트, 유휴 메모리, 입력 레이턴시 smoke만 있어도 된다.
+- 경쟁작 비교군 측정과 한글 조합/라이브 프리뷰 세부 시나리오는 기능이 들어오는 단계에서 확장한다.
 - CI에서는 main push/수동/주기 실행으로 두고 **PR required check로는 걸지 않는다**(하드웨어 변동성 때문). 대신 회귀가 크면 리포트로 경고한다.
 
 ## 회귀 정책

@@ -8,6 +8,8 @@
 - `main`에 직접 푸시하지 않는다. 항상 브랜치와 PR을 사용한다.
 - 커밋 메시지는 conventional-commit prefix(`feat`/`fix`/`docs`/`test`/`refactor`/`build`/`ci`/`chore`)를 쓴다. **소문자**로 시작한다.
 - 브랜치 이름은 `type/kebab-설명` 형식을 쓴다(예: `feat/live-preview-decorations`).
+- PR 제목과 본문은 한국어로 작성한다. 코드 식별자·명령어·고유명사는 필요한 경우 원문을 유지한다.
+- 모든 PR에는 assignee와 label이 반드시 있어야 한다. 적절한 label이 없으면 새 label을 만들고 붙인다.
 - 이 프로젝트는 워크스페이스 상위 폴더의 git 리포 하위에 있다. 커밋/PR 범위를 이 프로젝트 폴더로 한정하고, 무관한 상위 폴더 변경을 섞지 않는다.
 
 ## 코드 스타일과 린트/포맷
@@ -27,7 +29,7 @@
 
 ## 보안
 
-- HTML 렌더 경로는 `rehype-sanitize`를 기본 on으로 둔다. 신뢰할 수 없는 마크다운의 raw HTML/스크립트를 그대로 실행하지 않는다.
+- HTML 렌더 경로는 `rehype-sanitize`를 기본 on으로 두고 최종 HTML 주입 전 안전 경계로 사용한다. 신뢰할 수 없는 마크다운의 raw HTML/스크립트를 그대로 실행하지 않는다([security-model.md](security-model.md)).
 - Tauri IPC 커맨드는 경로 검증을 거친다. 워크스페이스 밖 임의 경로 read/write를 무분별하게 허용하지 않는다(`crates/fs-engine`의 경로 검증 단일 출처).
 - 파일 저장은 원자적으로 한다(temp 파일 write → rename). 저장 중 크래시가 사용자 문서를 손상시키지 않게 한다.
 
@@ -41,7 +43,7 @@
 
 - 모든 PR은 기존 전략(성능 예산·아키텍처 경계·원천 모델)에 지장이 없는지 평가한다. 전략을 수정해야 하면 임의로 바꾸지 말고 사용자와 먼저 논의한다.
 - 한계를 숨기고 구현을 밀어붙이지 않는다. 예상 못 한 한계나 문서와의 차이가 드러나면 즉시 사용자에게 보고한다.
-- 특히 **Linux WebKitGTK 관련 렌더/성능 문제**는 발견 즉시 보고한다(셸 선택의 알려진 리스크, [tauri-shell.md](tauri-shell.md)).
+- **Linux WebKitGTK 관련 렌더/성능 문제**는 프로토타입 이후 플랫폼 검증 단계에서 발견 즉시 보고한다(셸 선택의 알려진 리스크, [tauri-shell.md](tauri-shell.md)).
 
 ## 버그 수정
 

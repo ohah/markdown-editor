@@ -87,23 +87,26 @@ crates/
 
 ```text
 docs/
-  tech-stack.md            확정 스택·버전 정책
-  decisions.md             ADR(왜 이 선택인가)
-  architecture.md          레이어·경계·스레딩
-  project-structure.md     이 문서
-  project-rules.md         필수 규칙
-  development-commands.md  개발 명령
-  editor-strategy.md       CM6·라이브 프리뷰
-  parser-pipeline.md       unified 파이프라인
-  frontend-fsd.md          FSD 레이어 규칙
-  tauri-shell.md           Rust 백엔드 경계
-  performance-budget.md    성능 예산·벤치
-  testing-strategy.md      테스트·E2E·커버리지
-  verification-matrix.md   무엇을 무엇으로 검증하는가
-  implementation-plan.md   구현 순서
-  initial-vertical-slice.md 첫 세로 슬라이스
-  pr-checklist.md          PR 규칙
-  references.md            레퍼런스·clean-room
+  tech-stack.md              확정 스택·버전 정책
+  decisions.md               ADR(왜 이 선택인가)
+  architecture.md            레이어·경계·스레딩
+  product-scope.md           제품 범위·프로토타입 완료 기준·비목표
+  project-structure.md       이 문서
+  project-rules.md           필수 규칙
+  development-commands.md    개발 명령
+  editor-strategy.md         CM6·라이브 프리뷰
+  markdown-compatibility.md  GitHub Flavored Markdown 호환성 기준
+  parser-pipeline.md         unified 파이프라인
+  security-model.md          렌더/IPC 보안 정책
+  frontend-fsd.md            FSD 레이어 규칙
+  tauri-shell.md             Rust 백엔드 경계
+  performance-budget.md      성능 예산·벤치
+  testing-strategy.md        테스트·E2E·커버리지
+  verification-matrix.md     무엇을 무엇으로 검증하는가
+  implementation-plan.md     구현 순서
+  initial-vertical-slice.md  첫 세로 슬라이스
+  pr-checklist.md            PR 규칙
+  references.md              레퍼런스·clean-room
 ```
 
 ## 테스트 배치 규칙
