@@ -10,7 +10,7 @@
 | --- | --- | --- | --- |
 | 문서 모델 | `mise run test` (Vitest, `packages/core`) | 커버리지 | 텍스트=원천, dirty 전이, 소스맵이 의도대로 동작한다. |
 | 마크다운 렌더 | `mise run test` (`packages/markdown` core.ts) | 스냅샷 | 입력 md → 기대 HTML/headings/stats가 안정적이다. |
-| sanitize 보안 | `mise run test` (보안 회귀) | — | 스크립트 주입 문서에서 스크립트가 제거된다(XSS 차단). |
+| sanitize 보안 | `mise run test` (보안 회귀) | — | 스크립트/이벤트 핸들러/위험 URL이 최종 렌더에서 제거된다(XSS 차단). |
 | 라이브 프리뷰 decoration | `mise run test` (`packages/editor` 순수 계산) | — | 문서+선택 → decoration 집합이 정확하다(마크 숨김/렌더 적용, 커서 줄 원문 노출). |
 | Worker 계약 | `mise run test` (client.ts) | — | postMessage 형식, 디바운스, stale 취소가 동작한다. |
 | 원자적 저장 | `mise run test` (cargo, `crates/fs-engine`) | — | temp→rename 저장, 크래시 시 원본 보존, 인코딩 보존. |
@@ -36,7 +36,7 @@
 | --- | --- | --- | --- |
 | macOS E2E | 불가 | 도구 한계(tauri-driver가 WKWebView WebDriver 미지원) | 컴포넌트/통합 테스트 + 수동 흐름 검증 |
 | 한글 IME 조합 | 부분 | 도구 한계(WebDriver로 composition 재현 어려움) | CM6 트랜잭션 단위 테스트 근사 + 수동 시나리오 |
-| Linux WebKitGTK 렌더 차이 | 부분 | 환경 의존 | 초기 세로 슬라이스 조기 점검 + 스크린샷 수동 확인 |
+| Linux WebKitGTK 렌더 차이 | 부분 | 환경 의존 | 프로토타입 이후 플랫폼 검증 단계에서 스크린샷 수동 확인 + 가능하면 자동 E2E |
 | 성능(절대값) | 방향성만 | 환경 의존(하드웨어 변동) | 벤치 리포트(p50/p95/p99, 워터마크), 회귀 방향 감시 |
 | 리딩 뷰 시각 회귀 | 구현 전 | 러너 미구현 | 후속 스크린샷 골든 비교 도입 검토 |
 
@@ -58,7 +58,7 @@
 - pre-commit: `mise run lint` + `mise run fmt-check` (빠른 피드백)
 - **pre-push(필수): `mise run check`** (fmt-check + lint + fsd-check + test + clippy) — 통과 못 하면 push 차단
 - CI: 지금은 유닛 테스트만(나머지 백로그 — 크로스 플랫폼 E2E·성능·커버리지)
-- 개발·검증 1차 타깃은 **macOS 로컬**(수동 실행). Windows/Linux 자동화는 백로그.
+- 앱 실행 프로토타입까지의 개발·검증 1차 타깃은 **macOS 로컬**(수동 실행). Windows/Linux 자동화는 백로그이며, 프로토타입 이후 별도 플랫폼 검증 단계에서 다룬다.
 
 ## 연결 규칙
 

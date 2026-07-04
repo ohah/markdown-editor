@@ -88,10 +88,10 @@ git config core.hooksPath .githooks
 
 문서만 바꾼 PR은 `git diff --check`를 최소 검증으로 쓴다. 다만 문서가 명령·구조·테스트 경로를 바꾸면 관련 명령도 함께 실행한다.
 
-## 플랫폼별 조기 검증
+## 플랫폼별 검증
 
-Tauri 웹뷰 차이 때문에 초기부터 3-OS를 굴린다. 특히 **Linux WebKitGTK**를 가장 먼저 확인한다(상세와 시스템 의존성 목록은 [tauri-shell.md](tauri-shell.md)).
+앱 실행 프로토타입까지는 macOS 로컬 실행만 완료 기준으로 둔다([product-scope.md](product-scope.md)). Tauri 웹뷰 차이 때문에 프로토타입 이후 Windows/Linux를 별도 단계에서 확인하며, 그때 **Linux WebKitGTK**를 우선 확인한다(상세와 시스템 의존성 목록은 [tauri-shell.md](tauri-shell.md)).
 
 ```sh
-mise run dev           # 리눅스에서 CM6 편집/라이브 프리뷰 렌더 확인
+mise run dev           # 각 OS에서 CM6 편집/라이브 프리뷰 렌더 확인
 ```

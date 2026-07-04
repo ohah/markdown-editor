@@ -37,6 +37,16 @@
 | Vite / Bun | 빌드·워크스페이스 | 공식 문서. |
 | WebdriverIO / tauri-driver | E2E | 공식 문서(플랫폼 한계 포함, [testing-strategy.md](testing-strategy.md)). |
 
+## GitHub Flavored Markdown 기준
+
+초기 마크다운 호환성은 [markdown-compatibility.md](markdown-compatibility.md)를 단일 출처로 둔다. 레퍼런스 우선순위는 다음과 같다.
+
+| 레퍼런스 | 용도 |
+| --- | --- |
+| [github/cmark-gfm](https://github.com/github/cmark-gfm) | GFM 구현·테스트 스위트 오라클 |
+| [GitHub Flavored Markdown Spec](https://github.github.com/gfm/) | 공개 GFM 명세 |
+| [GitHub Docs writing syntax](https://docs.github.com/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) | 실제 GitHub 사용자 문서 기준 |
+
 ## 라이브 프리뷰 참고 시 주의
 
 라이브 프리뷰는 오픈 구현(CM6 decoration 기반 예제 등)을 **패턴 참고**할 수 있으나, 라이선스를 확인하고 코드를 그대로 복사하지 않는다. 참고한 패턴의 출처와, 우리가 왜 그 방식을 택/변형했는지를 코드 주석이나 [decisions.md](decisions.md)에 남긴다.

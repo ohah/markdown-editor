@@ -98,4 +98,4 @@ Rust 스레드(백엔드):
 
 ## 개발 순서
 
-구체 순서는 [실제 구현 계획](implementation-plan.md)과 [초기 세로 슬라이스](initial-vertical-slice.md)를 단일 출처로 둔다. 요약하면: 모노레포·툴체인 스캐폴딩 → 최소 편집 창(파일 열기/저장) → 리눅스 WebKitGTK 조기 검증 → 라이브 프리뷰 decoration → 리딩 뷰 Worker → 성능 벤치 하니스 순이다.
+구체 순서는 [실제 구현 계획](implementation-plan.md)과 [초기 세로 슬라이스](initial-vertical-slice.md)를 단일 출처로 둔다. 요약하면: 모노레포·툴체인 스캐폴딩 → macOS 앱 실행 프로토타입(파일 열기/저장 + 최소 벤치) → 라이브 프리뷰 decoration → 리딩 뷰 Worker → 워크스페이스 → Windows/Linux 플랫폼 검증 순이다.

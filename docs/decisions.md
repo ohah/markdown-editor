@@ -12,7 +12,7 @@
 
 Electron을 쓰면 경쟁작과 같은 baseline이라 "가벼움"으로 차별화가 안 된다. Tauri는 셸이 이기는 축(시작·메모리·용량)에서 즉시 체감 우위를 준다.
 
-**트레이드오프 / 리스크**: Tauri는 OS 웹뷰를 쓰므로 플랫폼마다 렌더 엔진이 다르고 **Linux WebKitGTK가 약한 고리**다. 그래서 3-OS 중 리눅스를 가장 먼저 검증한다. 플랫폼별 웹뷰 차이와 Linux 정책의 상세는 [tauri-shell.md](tauri-shell.md)를 단일 출처로 둔다.
+**트레이드오프 / 리스크**: Tauri는 OS 웹뷰를 쓰므로 플랫폼마다 렌더 엔진이 다르고 **Linux WebKitGTK가 약한 고리**다. 다만 앱 실행 프로토타입까지는 macOS 로컬 실행만 완료 기준으로 둔다([product-scope.md](product-scope.md)). Windows/Linux 검증은 프로토타입 이후 별도 단계에서 다루며, 플랫폼별 웹뷰 차이와 Linux 정책의 상세는 [tauri-shell.md](tauri-shell.md)를 단일 출처로 둔다.
 
 ---
 
