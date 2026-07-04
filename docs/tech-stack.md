@@ -10,6 +10,7 @@
 | 프론트엔드 프레임워크 | **React 19** | UI 크롬(사이드바·탭·팔레트·설정)용. 무거운 편집은 CM6이 담당. |
 | 빌드 도구 | **Vite** | 프론트엔드 dev 서버/번들러. Tauri가 이를 감싼다. |
 | 패키지 매니저/런타임 | **Bun** | 워크스페이스(모노레포), 스크립트 러너, 테스트 러너 후보. |
+| 개발 환경/태스크 | **mise** | 도구 버전 고정(bun/rust) + 태스크 러너(`mise run …`). `.mise.toml` 단일 출처. |
 | 프론트엔드 아키텍처 | **Feature-Sliced Design(FSD)** | 레이어/슬라이스/세그먼트 규칙은 [frontend-fsd.md](frontend-fsd.md). |
 | 에디터 엔진 | **CodeMirror 6** | 텍스트를 진실의 원천으로 두는 편집 표면. 라이브 프리뷰는 자체 decoration. |
 | 인에디터 파서 | **Lezer(markdown)** | CM6 `@codemirror/lang-markdown`에 내장. 증분 파싱·하이라이트. |
@@ -41,15 +42,44 @@
 
 - 모든 의존성은 **최신 안정 버전**을 기본으로 채택한다(사용자 요청).
 - 정확한 버전은 lockfile(`bun.lock`, `Cargo.lock`)에 **핀**으로 고정한다. "latest"를 런타임에 떠도는 상태로 두지 않는다.
-- 스캐폴딩 시점에 실제로 설치된 버전을 이 문서의 아래 표에 기록한다(현재는 계획 단계라 미기록).
+- 현재 최신 안정 버전을 아래 "현재 최신 버전" 표에 기록했다(조회일 2026-07-04). 스캐폴딩 설치 시 lockfile로 확정하고, 더 최신이 있으면 그 버전으로 설치 후 표를 갱신한다.
 - 메이저 업그레이드(예: Tauri 2→3, React 19→20)는 [decisions.md](decisions.md)에 ADR로 남긴 뒤 진행한다.
 
-### 설치된 버전(스캐폴딩 후 기록)
+### 현재 최신 버전 (조회일 2026-07-04)
 
-| 패키지 | 버전 | 기록일 |
+`.mise.toml`의 도구는 아래 버전으로 핀했다. 앱 의존성은 스캐폴딩에서 `bun add`/`cargo add` 시 아래 현재 최신 버전으로 설치하고 lockfile로 확정한다(설치 시점에 더 최신이 있으면 그 버전 + 이 표 갱신).
+
+| 패키지 | 버전 | 비고 |
 | --- | --- | --- |
-| _(미기록 — 초기 스캐폴딩 PR에서 채운다)_ | | |
+| bun | 1.3.14 | mise 핀(도구) |
+| rust | 1.96.0 | mise 핀(도구, + rustfmt/clippy) |
+| @tauri-apps/cli | 2.11.4 | |
+| @tauri-apps/api | 2.11.1 | |
+| tauri (crate) | 2.11.5 | Rust |
+| react / react-dom | 19.2.7 | |
+| vite | 8.1.3 | |
+| vitest | 4.1.9 | |
+| oxlint | 1.72.0 | |
+| oxfmt | 0.57.0 | |
+| steiger | 0.5.13 | FSD 경계 검사 |
+| codemirror | 6.0.2 | 메타 패키지 |
+| @codemirror/state | 6.7.0 | |
+| @codemirror/view | 6.43.4 | |
+| @codemirror/lang-markdown | 6.5.0 | |
+| unified | 11.0.5 | |
+| remark-parse | 11.0.0 | |
+| remark-gfm | 4.0.1 | |
+| remark-rehype | 11.1.2 | |
+| rehype-sanitize | 6.0.0 | |
+| rehype-stringify | 10.0.1 | |
+| webdriverio | 9.29.1 | E2E |
 
-## 툴 버전 핀(선택)
+## 개발 환경 (mise)
 
-Bun·Rust toolchain·Node 버전을 재현 가능하게 고정하려면 `mise`(또는 `rust-toolchain.toml` + `.bun-version`)를 쓴다. 도입 여부는 스캐폴딩 시 결정하고 [development-commands.md](development-commands.md)에 명령을 기록한다.
+개발 도구 버전 고정과 태스크 실행은 **mise**로 한다(maru와 동일 워크플로). 리포 루트 `.mise.toml`이 단일 출처다.
+
+- `[tools]`: `bun`, `rust`(+ `rustfmt`/`clippy` 컴포넌트)를 핀. 필요 시 `node` 추가.
+- `[tasks]`: `mise run dev/build/lint/fmt/test/clippy/check/…` — 내부적으로 bun 스크립트·cargo를 호출한다.
+- 도구 버전은 현재 최신 안정 버전으로 `.mise.toml`에 핀했다: **bun 1.3.14, rust 1.96.0**(조회일 2026-07-04). 업그레이드는 PR로 한다.
+
+명령 목록은 [development-commands.md](development-commands.md)를 단일 출처로 둔다.

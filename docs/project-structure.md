@@ -17,13 +17,15 @@ markdown-editor/
   AGENTS.md                에이전트 진입점(인덱스)
   CLAUDE.md                Claude 진입점(포인터)
   docs/                    설계 문서(단일 출처)
+  .mise.toml               개발 도구 버전 + 태스크(mise run) 단일 출처
+  .githooks/               커밋된 git 훅(pre-commit/pre-push), core.hooksPath 대상
   package.json             Bun 워크스페이스 루트 + 스크립트
   bunfig.toml              Bun 설정
   tsconfig.base.json       공용 TS 설정
   .oxlintrc.json           oxlint 규칙
   oxfmt 설정               (oxfmt 설정 파일 형식은 스캐폴딩 시 확정)
   Cargo.toml               Rust 워크스페이스 루트
-  .github/workflows/       CI(오xlint/oxfmt/vitest/clippy/cargo test/e2e)
+  .github/workflows/       CI(최소 유닛 테스트 — 나머지 백로그)
   apps/
     desktop/               Tauri 앱(웹 프론트 + Rust 셸)
   packages/                재사용 TS 패키지
