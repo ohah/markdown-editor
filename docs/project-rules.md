@@ -9,6 +9,7 @@
 - 커밋 메시지는 conventional-commit prefix(`feat`/`fix`/`docs`/`test`/`refactor`/`build`/`ci`/`chore`)를 쓴다. **소문자**로 시작한다.
 - 브랜치 이름은 `type/kebab-설명` 형식을 쓴다(예: `feat/live-preview-decorations`).
 - PR 제목과 본문은 한국어로 작성한다. 코드 식별자·명령어·고유명사는 필요한 경우 원문을 유지한다.
+- 모든 PR에는 assignee와 label이 반드시 있어야 한다. 적절한 label이 없으면 새 label을 만들고 붙인다.
 - 이 프로젝트는 워크스페이스 상위 폴더의 git 리포 하위에 있다. 커밋/PR 범위를 이 프로젝트 폴더로 한정하고, 무관한 상위 폴더 변경을 섞지 않는다.
 
 ## 코드 스타일과 린트/포맷

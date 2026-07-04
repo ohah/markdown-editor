@@ -12,6 +12,8 @@
 
 PR 제목과 본문은 한국어로 작성한다. 코드 식별자·명령어·고유명사는 필요한 경우 원문을 유지한다([project-rules.md 기본 규칙](project-rules.md)).
 
+모든 PR은 assignee와 label을 포함해야 한다. 적절한 label이 없으면 GitHub에 새 label을 만들고 PR에 붙인다.
+
 ```text
 ## 무엇을 / 왜
 - 이 변경이 지키는 사용자 편집 경험은 무엇인가
